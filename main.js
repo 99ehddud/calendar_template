@@ -1,15 +1,22 @@
 // For Header
-let innerWidth = window.innerWidth;
-let innerHeight = window.innerHeight;
-
 function resize_header() {
+    let innerWidth = window.innerWidth;
+
     const header = document.querySelector('header');
 
-    if (innerWidth > 500) {
+    if (innerWidth >= 500) {
         header.style.width = innerWidth + 'px';
     } else {
         header.style.width = '500px';
     }
+}
+
+// For Aside
+function resize_aside() {
+    let innerHeight = window.innerHeight;
+
+    const aside = document.querySelector('aside');
+    aside.style.height = (innerHeight - 100) + 'px';
 }
 
 // For Calendar

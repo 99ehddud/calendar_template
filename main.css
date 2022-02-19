@@ -30,13 +30,15 @@ aside {
     float: left;
     box-sizing: border-box;
     width: 200px;
-    height: 200px;
-
 }
 
 main {
     float: left;
     box-sizing: border-box;
+}
+
+main > table {
+    border-collapse: collapse;
 }
 
 footer {

@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="main.css" />
-        <script type="text/javascript" src="make_calendar.js"></script>
+        <script type="text/javascript" src="main.js"></script>
         <title>Calendar</title>
     </head>
 
@@ -16,9 +16,12 @@
                 window.onresize = function () {resize_header();}
             </script>
         </header>
-
+            
         <aside>
-
+            <script>
+                resize_aside();
+                window.onresize = function () {resize_aside();}
+            </script>
         </aside>
 
         <main>
