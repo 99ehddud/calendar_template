@@ -3,13 +3,18 @@
 <html lang="ja">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="" />
+        <link rel="stylesheet" href="main.css" />
+        <script type="text/javascript" src="make_calendar.js"></script>
         <title>Calendar</title>
     </head>
 
     <body>
         <header>
-
+            <p>Calendar</p>
+            <script>
+                resize_header();
+                window.onresize = function () {resize_header();}
+            </script>
         </header>
 
         <aside>
@@ -17,7 +22,7 @@
         </aside>
 
         <main>
-            <script type="text/javascript" src="main.js"></script>
+            <script>make_calendar(today_year, today_month);</script>
         </main>
 
         <footer>

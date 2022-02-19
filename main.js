@@ -1,3 +1,18 @@
+// For Header
+let innerWidth = window.innerWidth;
+let innerHeight = window.innerHeight;
+
+function resize_header() {
+    const header = document.querySelector('header');
+
+    if (innerWidth > 500) {
+        header.style.width = innerWidth + 'px';
+    } else {
+        header.style.width = '500px';
+    }
+}
+
+// For Calendar
 let today = new Date();
 let today_year = today.getFullYear();
 let today_month = today.getMonth() + 1;
@@ -12,7 +27,7 @@ function day_of_week(yyyy, MM, dd) {
 }
 
 function make_calendar(yyyy, MM) {
-    document.write("<table>");
+    document.write("<table border=\"1\">");
 
     let year_month = yyyy + ". " + MM;
     document.write("<caption>" + year_month + "</caption>");
@@ -86,5 +101,3 @@ function make_calendar(yyyy, MM) {
     }
     document.write("</table>");
 }
-
-make_calendar(today_year, today_month);
