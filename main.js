@@ -6,12 +6,15 @@ function resize() {
     const header = document.querySelector('header');
     const aside = document.querySelector('aside');
     const main = document.querySelector('main');
+    const calendartitle = document.querySelector('#calendar_title');
+    const dayoftheweek = document.querySelector('.day_of_the_week');
     const year_month = document.querySelector('#year_month');
-    
     const footer = document.querySelector('footer');
 
     let headerHeight = header.offsetHeight;
     let asideWidth = aside.offsetWidth;
+    let calendartitleHeight = calendartitle.offsetHeight;
+    let dayoftheweekHeight = dayoftheweek.offsetHeight;
     let footerHeight = footer.offsetHeight;
 
     header.style.width = innerWidth + 'px';
@@ -20,6 +23,14 @@ function resize() {
     aside.style.height = (innerHeight - headerHeight - footerHeight) + 'px';
     year_month.style.width = (innerWidth - asideWidth - 146) + 'px';
     
+    for (var i = 1; i <= 5; i++) {
+        let tr = document.getElementsByTagName('tr')[i];
+        tr.style.height = (innerHeight - headerHeight - calendartitleHeight - dayoftheweekHeight - footerHeight) / 5 + 'px';
+        for (var j = 0; j <= 6; j++) {
+            let td = document.getElementsByTagName('td')[j];
+            td.style.width = (innerWidth - asideWidth - 6) / 7 + 'px';
+        }
+    }
 }
 
 // For Calendar
@@ -37,7 +48,7 @@ function day_of_week(yyyy, MM, dd) {
 }
 
 function make_calendar(yyyy, MM) {
-    document.write("<table border=\"1\">");
+    document.write("<table>");
 
     let year_month = yyyy + ". " + MM;
     document.getElementById('year_month').textContent = year_month;

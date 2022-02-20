@@ -45,6 +45,7 @@ main {
     box-sizing: border-box;
     padding: 0 50px;
     height: 50px;
+    border-bottom: 1px solid rgb(180, 180, 180);
 }
 
 #calendar_title > button {
@@ -67,19 +68,37 @@ main > table {
     border-collapse: collapse;
 }
 
-main > table > tbody > tr > td {
-    padding: 0;
+main > table > tbody > tr {
+    border-bottom: 1px solid rgb(180, 180, 180);
 }
 
-.day_of_the_week:first-child {
+main > table > tbody > tr > td {
+    padding: 0;
+    text-align: right;
+    font-size: 2vmin;
+}
+
+main > table > tbody > tr > td:not(:last-child) {
+    border-right: 1px solid rgb(180, 180, 180);
+}
+
+.day_of_the_week {
+    text-align: center;
+    height: 40px;
+}
+
+.day_of_the_week:first-child,
+.sunday_4week, .sunday_5week, .sunday_6week {
     color: rgb(255, 91, 91)
 }
 
-.day_of_the_week:not(:first-child, :last-child) {
-    color: grey;
+.day_of_the_week:not(:first-child, :last-child),
+.weekday_4week, .weekday_5week, .weekday_6week {
+    color: rgb(77, 77, 77);
 }
 
-.day_of_the_week:last-child {
+.day_of_the_week:last-child,
+.saturday_4week, .saturday_5week, .saturday_6week {
     color: rgb(91, 91, 255);
 }
 
