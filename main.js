@@ -1,22 +1,25 @@
-// For Header
-function resize_header() {
+// For Resize
+function resize() {
     let innerWidth = window.innerWidth;
-
-    const header = document.querySelector('header');
-
-    if (innerWidth >= 500) {
-        header.style.width = innerWidth + 'px';
-    } else {
-        header.style.width = '500px';
-    }
-}
-
-// For Aside
-function resize_aside() {
     let innerHeight = window.innerHeight;
 
+    const header = document.querySelector('header');
     const aside = document.querySelector('aside');
-    aside.style.height = (innerHeight - 100) + 'px';
+    const main = document.querySelector('main');
+    const year_month = document.querySelector('#year_month');
+    
+    const footer = document.querySelector('footer');
+
+    let headerHeight = header.offsetHeight;
+    let asideWidth = aside.offsetWidth;
+    let footerHeight = footer.offsetHeight;
+
+    header.style.width = innerWidth + 'px';
+    main.style.width = (innerWidth - asideWidth) + 'px';
+    main.style.height = (innerHeight - headerHeight - footerHeight) + 'px';
+    aside.style.height = (innerHeight - headerHeight - footerHeight) + 'px';
+    year_month.style.width = (innerWidth - asideWidth - 146) + 'px';
+    
 }
 
 // For Calendar
@@ -37,12 +40,12 @@ function make_calendar(yyyy, MM) {
     document.write("<table border=\"1\">");
 
     let year_month = yyyy + ". " + MM;
-    document.write("<caption>" + year_month + "</caption>");
+    document.getElementById('year_month').textContent = year_month;
 
     let day = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     document.write("<tr>");
     for (var i = 0; i <= 6; i++) {
-        document.write("<th id=\"day_of_the_week\">" + day[i] + "</th>");
+        document.write("<td class=\"day_of_the_week\">" + day[i] + "</td>");
     }
     document.write("</tr>");
 
@@ -59,7 +62,11 @@ function make_calendar(yyyy, MM) {
     let length = count + finalday_of_Month(yyyy, MM);
 
     for (var dd = 1; dd <= finalday_of_Month(yyyy, MM); dd++) {
-        document.write("<td id=\"")
+        if (day_of_week(yyyy, MM, dd) == 0) {
+            document.write("<tr>");
+        }
+
+        document.write("<td class=\"")
 
         if (day_of_week(yyyy, MM, dd) == 0) {
             if (0 <= length && length <= 28) {
@@ -100,9 +107,15 @@ function make_calendar(yyyy, MM) {
         } else {
             document.write(dd);
         }
-        document.write("<br></td>");
+        document.write("</td>");
 
-        if (day_of_week(yyyy, MM, dd) == 6 || dd == finalday_of_Month(yyyy, MM, dd)) {
+        if (day_of_week(yyyy, MM, dd) != 6 && dd == finalday_of_Month(yyyy, MM, dd)) {
+            for (var k = day_of_week(yyyy, MM, dd); k < 6; k++){
+                document.write("<td></td>");
+            }
+        }
+
+        if (day_of_week(yyyy, MM, dd) == 6) {
             document.write("</tr>");
         }
     }

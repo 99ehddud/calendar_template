@@ -12,24 +12,32 @@
         <header>
             <p>Calendar</p>
             <script>
-                resize_header();
-                window.onresize = function () {resize_header();}
+                
             </script>
         </header>
             
         <aside>
             <script>
-                resize_aside();
-                window.onresize = function () {resize_aside();}
+                
             </script>
         </aside>
 
         <main>
+            <div id="calendar_title">
+                <button><</button>
+                <p id="year_month"></p>
+                <button>></button>
+            </div>
             <script>make_calendar(today_year, today_month);</script>
         </main>
 
         <footer>
 
         </footer>
+
+        <script>
+            resize();
+            window.onresize = function () { resize(); }
+        </script>
     </body>
 </html>
