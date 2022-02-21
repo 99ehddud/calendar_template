@@ -71,12 +71,11 @@ main > table {
 main > table > tbody > tr > td {
     padding: 0;
     text-align: right;
-    font-size: 1vmin;
+    font-size: 2vmin;
 }
 
 .day_of_the_week {
     text-align: center;
-    height: 30px;
 }
 
 .day_of_the_week:first-child,

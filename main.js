@@ -76,7 +76,7 @@ function make_calendar(yyyy, MM) {
         }
 
         document.write("\">");
-        if (dd == today_date) {
+        if (yyyy == today_year && MM == today_month && dd == today_date) {
             if (day_of_week(yyyy, MM, dd) == 0) {
                 document.write("<span style=\"color: red; font-weight: 900;\">" + dd + "</span>");
             } else if (day_of_week(yyyy, MM, dd) == 6) {
@@ -133,9 +133,9 @@ function resize(yyyy, MM) {
             let td = tr.getElementsByTagName('td')[j];
             td.style.width = (innerWidth - asideWidth - 6) / 7 + 'px';
             if (i == 0) {
-                td.style.height = calendarHeight * (5/100) + 'px';
+                td.style.height = calendarHeight * (10/100) + 'px';
             } else {
-                td.style.height = (calendarHeight * (95/100)) / weeks_of_month(yyyy, MM) + 'px';
+                td.style.height = (calendarHeight * (90/100)) / weeks_of_month(yyyy, MM) + 'px';
             }
 
             if (i < weeks_of_month(yyyy, MM)) {
