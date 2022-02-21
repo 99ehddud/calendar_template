@@ -24,9 +24,9 @@
 
         <main>
             <div id="calendar_title">
-                <button><</button>
+                <button type="button" onclick=""><</button>
                 <p id="year_month"></p>
-                <button>></button>
+                <button type="button" onclick="">></button>
             </div>
             <script>make_calendar(today_year, today_month);</script>
         </main>
@@ -36,8 +36,8 @@
         </footer>
 
         <script>
-            resize();
-            window.onresize = function () { resize(); }
+            resize(today_year, today_month);
+            window.onresize = function () { resize(today_year, today_month); }
         </script>
     </body>
 </html>
