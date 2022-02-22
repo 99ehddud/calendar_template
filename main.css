@@ -64,18 +64,22 @@ main {
     text-align: center;
 }
 
-main > table {
+#calendar {
     border-collapse: collapse;
 }
 
-main > table > tbody > tr > td {
+.day_of_the_week {
     padding: 0;
-    text-align: right;
-    font-size: 2vmin;
+    text-align: center;
+    height: 20px;
+    font-size: 5px;
 }
 
-.day_of_the_week {
-    text-align: center;
+#calendar > tbody > tr:not(:first-child) > td {
+    padding: 0;
+    text-align: right;
+    vertical-align: top;
+    font-size: 2vmin;
 }
 
 .day_of_the_week:first-child,
