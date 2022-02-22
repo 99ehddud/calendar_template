@@ -103,6 +103,11 @@ function make_calendar(yyyy, MM) {
     document.write('</table>');
 }
 
+// For Button
+function next_month() {
+    
+}
+
 // For Resize
 function resize(yyyy, MM) {
     let innerWidth = window.innerWidth;
@@ -115,6 +120,8 @@ function resize(yyyy, MM) {
     const yearmonth = document.querySelector('#year_month');
     const dayoftheweek = document.querySelector('.day_of_the_week');
     const calendar = document.querySelector('#calendar');
+    const todo = document.querySelector('#to_do');
+    const tmp = document.querySelector('#tmp');
     const footer = document.querySelector('footer');
 
     let headerHeight = header.offsetHeight;
@@ -122,12 +129,15 @@ function resize(yyyy, MM) {
     let calendartitleHeight = calendartitle.offsetHeight;
     let dayoftheweekHeight = dayoftheweek.offsetHeight;
     let footerHeight = footer.offsetHeight;
-    let calendarHeight = innerHeight - headerHeight - calendartitleHeight - dayoftheweekHeight - weeks_of_month(yyyy, MM) - footerHeight;
+    let middle = innerHeight - headerHeight - footerHeight
+    let calendarHeight = innerHeight - headerHeight - calendartitleHeight - dayoftheweekHeight - footerHeight;
 
     header.style.width = innerWidth + 'px';
     main.style.width = (innerWidth - asideWidth) + 'px';
-    main.style.height = (innerHeight - headerHeight - footerHeight) + 'px';
-    aside.style.height = (innerHeight - headerHeight - footerHeight) + 'px';
+    main.style.height = middle + 'px';
+    aside.style.height = middle + 'px';
+    todo.style.height = middle/2 + 'px';
+    tmp.style.height = middle/2 + 'px';
     yearmonth.style.width = (innerWidth - asideWidth - 146) + 'px';
 
     for (var k = 0; k <= weeks_of_month(yyyy, MM); k++) {
