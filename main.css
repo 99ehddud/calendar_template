@@ -24,6 +24,7 @@ header > p {
     font-weight: 500;
     color: white;
     font-family: 'M PLUS Rounded 1c', sans-serif;
+    cursor: pointer;
 }
 
 aside {
@@ -49,8 +50,26 @@ aside {
     height: 30px;
 }
 
+#to_do > input:not([type="submit"]) {
+    border: none;
+    border-bottom: 2px solid rgb(129, 144, 255);
+}
+
+#to_do > input:not([type="submit"]):active,
+#to_do > input:not([type="submit"]):focus {
+    outline: none;
+}
+
 #to_do > input[type="submit"] {
-    
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(129, 144, 255);
+    cursor: pointer;
+}
+
+#to_do > input[type="submit"]:active {
+    background-color: rgb(87, 107, 255);
 }
 
 #to_do > input:not(:last-child) {
@@ -83,8 +102,9 @@ main {
     height: 23px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
-    background-color: rgb(180, 180, 180);
+    font-size: 20px;
+    color: rgb(109, 126, 255);
+    background-color: transparent;
 }
 
 #calendar_title > p {
@@ -115,17 +135,17 @@ main {
 
 .day_of_the_week:first-child,
 .sunday_4week, .sunday_5week, .sunday_6week {
-    color: rgb(255, 91, 91)
+    color: rgb(255, 118, 118)
 }
 
 .day_of_the_week:not(:first-child, :last-child),
 .weekday_4week, .weekday_5week, .weekday_6week {
-    color: rgb(77, 77, 77);
+    color: rgb(112, 112, 112);
 }
 
 .day_of_the_week:last-child,
 .saturday_4week, .saturday_5week, .saturday_6week {
-    color: rgb(91, 91, 255);
+    color: rgb(118, 118, 255);
 }
 
 footer {

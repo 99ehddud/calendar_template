@@ -137,6 +137,7 @@ function resize(yyyy, MM) {
     main.style.height = middle + 'px';
     aside.style.height = middle + 'px';
     todo.style.height = middle/2 + 'px';
+    todo.style.padding = ((middle/2 - 1) <= 250) ? '10px 0' : (middle/2 - 231)/2 + 'px 0';
     tmp.style.height = middle/2 + 'px';
     yearmonth.style.width = (innerWidth - asideWidth - 146) + 'px';
 
