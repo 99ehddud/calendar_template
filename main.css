@@ -76,7 +76,7 @@ aside {
     margin-bottom: 20px;
 }
 
-#tmp {
+#schedule {
     box-sizing: border-box;
     width: 249px;
 }
@@ -135,17 +135,29 @@ main {
 
 .day_of_the_week:first-child,
 .sunday_4week, .sunday_5week, .sunday_6week {
-    color: rgb(255, 118, 118)
+    color: rgb(255, 90, 90)
 }
 
 .day_of_the_week:not(:first-child, :last-child),
 .weekday_4week, .weekday_5week, .weekday_6week {
-    color: rgb(112, 112, 112);
+    color: rgb(90, 90, 90);
 }
 
 .day_of_the_week:last-child,
 .saturday_4week, .saturday_5week, .saturday_6week {
-    color: rgb(118, 118, 255);
+    color: rgb(90, 90, 255);
+}
+
+.sunday_4week:hover, .sunday_5week:hover, .sunday_6week:hover,
+.weekday_4week:hover, .weekday_5week:hover, .weekday_6week:hover,
+.saturday_4week:hover, .saturday_5week:hover, .saturday_6week:hover {
+    background-color: rgb(232, 232, 255);
+}
+
+.sunday_4week:active, .sunday_5week:active, .sunday_6week:active,
+.weekday_4week:active, .weekday_5week:active, .weekday_6week:active,
+.saturday_4week:active, .saturday_5week:active, .saturday_6week:active {
+    background-color: rgb(211, 211, 255);
 }
 
 footer {

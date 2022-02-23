@@ -23,6 +23,23 @@ function weeks_of_month(yyyy, MM) {
     }
 }
 
+function input_date(yyyy, MM, dd) {
+    if (MM < 10) {
+        MM = '0' + MM;
+    }
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    let date = yyyy + '-' + MM + '-' + dd;
+    let tmp = document.getElementById('date').value;
+    if (tmp == date) {
+        document.getElementById('date').value = null;
+    } else {
+        document.getElementById('date').value = date;
+    }
+    
+}
+
 function make_calendar(yyyy, MM) {
     let year_month = yyyy + '. ' + MM;
     document.getElementById('year_month').textContent = year_month;
@@ -75,18 +92,18 @@ function make_calendar(yyyy, MM) {
             }
         }
 
-        document.write('\'>');
+        document.write('\' onclick=\'input_date(' + yyyy + ', ' + MM + ', ' + dd + ')\' style="cursor: pointer; ');
         if (yyyy == today_year && MM == today_month && dd == today_date) {
             if (day_of_week(yyyy, MM, dd) == 0) {
-                document.write('<span style=\'color: red; font-weight: 900;\'>' + dd + '</span>');
+                document.write('color: red; font-weight: 900;"">' + dd);
             } else if (day_of_week(yyyy, MM, dd) == 6) {
-                document.write('<span style=\'color: blue; font-weight: 900;\'>' + dd + '</span>');
+                document.write('color: blue; font-weight: 900;"">' + dd);
             } else {
-                document.write('<span style=\'color: black; font-weight: 900;\'>' + dd + '</span>');
+                document.write('color: black; font-weight: 900;"">' + dd);
             }
 
         } else {
-            document.write(dd);
+            document.write('">' + dd);
         }
         document.write('</td>');
 
@@ -121,7 +138,7 @@ function resize(yyyy, MM) {
     const dayoftheweek = document.querySelector('.day_of_the_week');
     const calendar = document.querySelector('#calendar');
     const todo = document.querySelector('#to_do');
-    const tmp = document.querySelector('#tmp');
+    const schedule = document.querySelector('#schedule');
     const footer = document.querySelector('footer');
 
     let headerHeight = header.offsetHeight;
@@ -138,7 +155,8 @@ function resize(yyyy, MM) {
     aside.style.height = middle + 'px';
     todo.style.height = middle/2 + 'px';
     todo.style.padding = ((middle/2 - 1) <= 250) ? '10px 0' : (middle/2 - 231)/2 + 'px 0';
-    tmp.style.height = middle/2 + 'px';
+    schedule.style.height = middle/2 + 'px';
+    schedule.style.padding = ((middle / 2) <= 250) ? '10px 0' : (middle / 2 - 230) / 2 + 'px 0';
     yearmonth.style.width = (innerWidth - asideWidth - 146) + 'px';
 
     for (var k = 0; k <= weeks_of_month(yyyy, MM); k++) {
