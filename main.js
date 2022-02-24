@@ -32,23 +32,42 @@ function input_date(YYYY, MM, DD) {
     let end_year = document.getElementById('end_year').value;
     let end_month = document.getElementById('end_month').value;
     let end_day = document.getElementById('end_day').value;
-    if ((start_year == YYYY && start_month == MM & start_day == DD) || (end_year == YYYY && end_month == MM && end_day == DD)) {
-        document.getElementById('start_year').value = null;
-        document.getElementById('start_month').value = null;
-        document.getElementById('start_day').value = null;
-        document.getElementById('end_year').value = null;
-        document.getElementById('end_month').value = null;
-        document.getElementById('end_day').value = null;
-    } else if (start_year && start_month && start_day) {
-        document.getElementById('end_year').value = YYYY;
-        document.getElementById('end_month').value = MM;
-        document.getElementById('end_day').value = DD;
-    } else {
-        document.getElementById('start_year').value = YYYY;
-        document.getElementById('start_month').value = MM;
-        document.getElementById('start_day').value = DD;
-    }
     
+    if (((YYYY == start_year && MM == start_month && DD == start_day) || (YYYY == end_year && MM == end_month && DD == end_day))
+        && (start_year && start_month && start_day && end_year && end_month && end_day)) {
+        if ((YYYY == start_year && MM == start_month && DD == start_day) && (YYYY == end_year && MM == end_month && DD == end_day)) {
+            document.getElementById('start_year').value = null;
+            document.getElementById('start_month').value = null;
+            document.getElementById('start_day').value = null;
+            document.getElementById('end_year').value = null;
+            document.getElementById('end_month').value = null;
+            document.getElementById('end_day').value = null;
+        } else if ((YYYY == start_year && MM == start_month && DD == start_day) && (end_year && end_month && end_day)) {
+            document.getElementById('start_year').value = null;
+            document.getElementById('start_month').value = null;
+            document.getElementById('start_day').value = null;
+        } else if ((YYYY == end_year && MM == end_month && DD == end_day) && (start_year && start_month && start_day)) {
+            document.getElementById('end_year').value = null;
+            document.getElementById('end_month').value = null;
+            document.getElementById('end_day').value = null;
+        }
+    } else {
+        if (!start_year || !start_month || !start_day) {
+            document.getElementById('start_year').value = YYYY;
+            document.getElementById('start_month').value = MM;
+            document.getElementById('start_day').value = DD;
+        } else if (start_year && start_month && start_day) {
+            if ((start_year == YYYY && start_month == MM && start_day > DD) || (start_year == YYYY && start_month > MM) || (start_year > YYYY)) {
+                document.getElementById('start_year').value = YYYY;
+                document.getElementById('start_month').value = MM;
+                document.getElementById('start_day').value = DD;
+            } else if ((start_year == YYYY && start_month == MM && start_day <= DD) || (start_year == YYYY && start_month <= MM) || (start_year <= YYYY)) {
+                document.getElementById('end_year').value = YYYY;
+                document.getElementById('end_month').value = MM;
+                document.getElementById('end_day').value = DD;
+            }
+        }
+    }
 }
 
 function maxLengthCheck(object) {
@@ -57,9 +76,9 @@ function maxLengthCheck(object) {
     }
 }
 
-function maxCheck(object) {
-
-}
+// function maxCheck(object) {
+    
+// }
 
 function make_calendar(YYYY, MM) {
     let year_month = YYYY + '. ' + MM;
