@@ -50,6 +50,27 @@ aside {
     height: 30px;
 }
 
+#to_do > input[type="number"] {
+    width: 40px;
+    text-align: center;
+}
+
+#to_do > input[type="number"]:not(#start_year, #end_year) {
+    width: 30px;
+    text-align: center;
+}
+
+#start_year, #start_month, #start_day, #start_hour,
+#end_year, #end_month, #end_day, #end_hour {
+    margin-right: 5px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} /* https://web-atelier.tistory.com/16 */
+
 #to_do > input:not([type="submit"]) {
     border: none;
     border-bottom: 2px solid rgb(129, 144, 255);

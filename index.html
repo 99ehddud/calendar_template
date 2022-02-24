@@ -15,11 +15,11 @@
             
         <aside>
             <form action="" name="to_do" id="to_do" method="post">
-                    <input type="text" id="text" placeholder="Title">
-                    <input type="date" id="date" value="">
-                    <input type="time">
-                    <input type="text" placeholder="Explanation">
-                    <input type="submit" value="confirm">
+                <input type="text" id="text" placeholder="Title" maxlength="20" required autocomplete="off"><br>
+                <input type="number" id="start_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="start_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="start_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="31" required autocomplete="off"><input type="number" id="start_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="start_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
+                <input type="number" id="end_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="end_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="end_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="31" required autocomplete="off"><input type="number" id="end_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="end_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
+                <input type="text" placeholder="Explanation" required autocomplete="off">
+                <input type="submit" value="confirm">
             </form>
             <div id="schedule">
                 
