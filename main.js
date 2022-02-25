@@ -25,49 +25,48 @@ function weeks_of_month(YYYY, MM) {
     }
 }
 
+let isFirst = true;
+let isSecond = false;
+let isThird = false;
+
 function input_date(YYYY, MM, DD) {
-    let start_year = document.getElementById('start_year').value;
-    let start_month = document.getElementById('start_month').value;
-    let start_day = document.getElementById('start_day').value;
-    let end_year = document.getElementById('end_year').value;
-    let end_month = document.getElementById('end_month').value;
-    let end_day = document.getElementById('end_day').value;
-    
-    if (((YYYY == start_year && MM == start_month && DD == start_day) || (YYYY == end_year && MM == end_month && DD == end_day))
-        && (start_year && start_month && start_day && end_year && end_month && end_day)) {
-        if ((YYYY == start_year && MM == start_month && DD == start_day) && (YYYY == end_year && MM == end_month && DD == end_day)) {
-            document.getElementById('start_year').value = null;
-            document.getElementById('start_month').value = null;
-            document.getElementById('start_day').value = null;
-            document.getElementById('end_year').value = null;
-            document.getElementById('end_month').value = null;
-            document.getElementById('end_day').value = null;
-        } else if ((YYYY == start_year && MM == start_month && DD == start_day) && (end_year && end_month && end_day)) {
-            document.getElementById('start_year').value = null;
-            document.getElementById('start_month').value = null;
-            document.getElementById('start_day').value = null;
-        } else if ((YYYY == end_year && MM == end_month && DD == end_day) && (start_year && start_month && start_day)) {
-            document.getElementById('end_year').value = null;
-            document.getElementById('end_month').value = null;
-            document.getElementById('end_day').value = null;
-        }
-    } else {
-        if (!start_year || !start_month || !start_day) {
+    if (isFirst) {
+        isFirst = false;
+        document.getElementById('start_year').value = YYYY;
+        document.getElementById('start_month').value = MM;
+        document.getElementById('start_day').value = DD;
+        document.getElementById('end_year').value = YYYY;
+        document.getElementById('end_month').value = MM;
+        document.getElementById('end_day').value = DD;
+        isSecond = true;
+    } else if (isSecond) {
+        isSecond = false;
+        if ((YYYY == start_year && MM == start_month && DD < start_day) || (YYYY == start_year && MM < start_month) || (YYYY < start_year)) {
             document.getElementById('start_year').value = YYYY;
             document.getElementById('start_month').value = MM;
             document.getElementById('start_day').value = DD;
-        } else if (start_year && start_month && start_day) {
-            if ((start_year == YYYY && start_month == MM && start_day > DD) || (start_year == YYYY && start_month > MM) || (start_year > YYYY)) {
-                document.getElementById('start_year').value = YYYY;
-                document.getElementById('start_month').value = MM;
-                document.getElementById('start_day').value = DD;
-            } else if ((start_year == YYYY && start_month == MM && start_day <= DD) || (start_year == YYYY && start_month <= MM) || (start_year <= YYYY)) {
-                document.getElementById('end_year').value = YYYY;
-                document.getElementById('end_month').value = MM;
-                document.getElementById('end_day').value = DD;
-            }
+        } else if ((YYYY == start_year && MM == start_month && DD > start_day) || (YYYY == start_year && MM > start_month) || (YYYY > start_year)) {
+            document.getElementById('end_year').value = YYYY;
+            document.getElementById('end_month').value = MM;
+            document.getElementById('end_day').value = DD;
         }
+        isThird = true;
+    } else if (isThird) {
+        isThird = false;
+        document.getElementById('start_year').value = null;
+        document.getElementById('start_month').value = null;
+        document.getElementById('start_day').value = null;
+        document.getElementById('end_year').value = null;
+        document.getElementById('end_month').value = null;
+        document.getElementById('end_day').value = null;
+        isFirst = true;
     }
+}
+
+function click_confirm() {
+    isFirst = true;
+    isSecond = false;
+    isThird = false;
 }
 
 function maxLengthCheck(object) {
