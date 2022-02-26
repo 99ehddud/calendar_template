@@ -29,7 +29,29 @@ let isFirst = true;
 let isSecond = false;
 let isThird = false;
 
+function initialize_turn() {
+    isFirst = true;
+    isSecond = false;
+    isThird = false;
+}
+
+function input_null() {
+    document.getElementById('start_year').value = null;
+    document.getElementById('start_month').value = null;
+    document.getElementById('start_day').value = null;
+    document.getElementById('end_year').value = null;
+    document.getElementById('end_month').value = null;
+    document.getElementById('end_day').value = null;
+}
+
 function input_date(YYYY, MM, DD) {
+    let start_year = document.getElementById('start_year').value;
+    let start_month = document.getElementById('start_month').value;
+    let start_day = document.getElementById('start_day').value;
+    let end_year = document.getElementById('end_year').value;
+    let end_month = document.getElementById('end_month').value;
+    let end_day = document.getElementById('end_day').value;
+    
     if (isFirst) {
         isFirst = false;
         document.getElementById('start_year').value = YYYY;
@@ -45,28 +67,24 @@ function input_date(YYYY, MM, DD) {
             document.getElementById('start_year').value = YYYY;
             document.getElementById('start_month').value = MM;
             document.getElementById('start_day').value = DD;
-        } else if ((YYYY == start_year && MM == start_month && DD > start_day) || (YYYY == start_year && MM > start_month) || (YYYY > start_year)) {
+            isThird = true;
+        } else if (YYYY == start_year && MM == start_month && DD == start_day) {
+            input_null();
+            isFirst = true;
+        }else if ((YYYY == end_year && MM == end_month && DD > end_day) || (YYYY == end_year && MM > end_month) || (YYYY > end_year)) {
             document.getElementById('end_year').value = YYYY;
             document.getElementById('end_month').value = MM;
             document.getElementById('end_day').value = DD;
+            isThird = true;
         }
-        isThird = true;
     } else if (isThird) {
         isThird = false;
-        document.getElementById('start_year').value = null;
-        document.getElementById('start_month').value = null;
-        document.getElementById('start_day').value = null;
-        document.getElementById('end_year').value = null;
-        document.getElementById('end_month').value = null;
-        document.getElementById('end_day').value = null;
+        input_null()
         isFirst = true;
+    } else {
+        initialize_turn();
+        input_null();
     }
-}
-
-function click_confirm() {
-    isFirst = true;
-    isSecond = false;
-    isThird = false;
 }
 
 function maxLengthCheck(object) {
@@ -75,9 +93,11 @@ function maxLengthCheck(object) {
     }
 }
 
-// function maxCheck(object) {
-    
-// }
+function maxCheck(YYYY, MM, object) {
+    if (YYYY && MM) {
+        object.max = finalday_of_Month(YYYY, MM);
+    }
+}
 
 function make_calendar(YYYY, MM) {
     let year_month = YYYY + '. ' + MM;
@@ -161,7 +181,21 @@ function make_calendar(YYYY, MM) {
 
 // For Button
 function next_month() {
-    
+    if (today_month < 12) {
+        today_month += 1;
+    } else {
+        today_year += 1;
+        today_month = 1;
+    }
+}
+
+function prev_month() {
+    if (today_month > 1) {
+        today_month -= 1;
+    } else {
+        today_year -= 1;
+        today_month = 12;
+    }
 }
 
 // For Resize
@@ -177,7 +211,7 @@ function resize(YYYY, MM) {
     const dayoftheweek = document.querySelector('.day_of_the_week');
     const calendar = document.querySelector('#calendar');
     const todo = document.querySelector('#to_do');
-    const schedule = document.querySelector('#schedule');
+    const instruction = document.querySelector('#instruction');
     const footer = document.querySelector('footer');
 
     let headerHeight = header.offsetHeight;
@@ -194,8 +228,8 @@ function resize(YYYY, MM) {
     aside.style.height = middle + 'px';
     todo.style.height = middle/2 + 'px';
     todo.style.padding = ((middle/2 - 1) <= 250) ? '10px 0' : (middle/2 - 231)/2 + 'px 0';
-    schedule.style.height = middle/2 + 'px';
-    schedule.style.padding = ((middle / 2) <= 250) ? '10px 0' : (middle / 2 - 230) / 2 + 'px 0';
+    instruction.style.height = middle/2 + 'px';
+    instruction.style.padding = ((middle / 2) <= 250) ? '10px 0' : (middle / 2 - 230) / 2 + 'px 0';
     yearmonth.style.width = (innerWidth - asideWidth - 146) + 'px';
 
     for (var k = 0; k <= weeks_of_month(YYYY, MM); k++) {

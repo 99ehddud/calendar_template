@@ -15,22 +15,22 @@
             
         <aside>
             <form action="" name="to_do" id="to_do" method="post">
-                <input type="text" id="text" placeholder="Title" maxlength="20" required autocomplete="off"><br>
-                <input type="number" id="start_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="start_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="start_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="31" required autocomplete="off"><input type="number" id="start_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="start_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
-                <input type="number" id="end_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="end_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="end_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="31" required autocomplete="off"><input type="number" id="end_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="end_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
-                <input type="text" placeholder="Explanation" autocomplete="off">
-                <input type="submit" value="confirm" onclick="click_confirm();">
+                <input type="text" id="title" placeholder="Title" maxlength="20" required autocomplete="off"><br>
+                <input type="number" id="start_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="start_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="start_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this); maxCheck(document.getElementById('start_year').value, document.getElementById('start_month').value, this)" min="1" max="31" required autocomplete="off"><input type="number" id="start_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="start_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
+                <input type="number" id="end_year" placeholder="YYYY" maxlength="4" oninput="maxLengthCheck(this)" min="0" required autocomplete="off"><input type="number" id="end_month" placeholder="MM" maxlength="2" oninput="maxLengthCheck(this)" min="1" max="12" required autocomplete="off"><input type="number" id="end_day" placeholder="DD" maxlength="2" oninput="maxLengthCheck(this); maxCheck(document.getElementById('end_year').value, document.getElementById('end_month').value, this)" min="1" max="31" required autocomplete="off"><input type="number" id="end_hour" placeholder="HH" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="23" required autocomplete="off"><input type="number" id="end_minute" placeholder="mm" maxlength="2" oninput="maxLengthCheck(this)" min="0" max="59" required autocomplete="off"><br>
+                <input type="text" id="explanation" placeholder="Explanation" autocomplete="off">
+                <input type="submit" value="confirm" onclick="initialize_turn();">
             </form>
-            <div id="schedule">
+            <div id="instruction">
                 
             </div>
         </aside>
 
-        <main>
+        <main id="main">
             <div id="calendar_title">
-                <button type="button" onclick=""><</button>
+                <button type="button" id="prev_month" onclick="prev_month()"><</button>
                 <p id="year_month"></p>
-                <button type="button" onclick="">></button>
+                <button type="button" id="next_month" onclick="next_month()">></button>
             </div>
             <script>make_calendar(today_year, today_month);</script>
         </main>
