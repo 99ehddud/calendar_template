@@ -1,0 +1,126 @@
+/* For Fonts */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500&display=swap');
+
+/* For Selectors */
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    box-sizing: border-box;
+    padding: 5px 30px;
+    height: 60px;
+    background-color: rgb(129, 144, 255);
+}
+
+header > p {
+    margin: 0;
+    text-align: center;
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    cursor: pointer;
+}
+
+aside {
+    float: left;
+    box-sizing: border-box;
+    width: 250px;
+    background-color: blueviolet;
+}
+
+main {
+    float: left;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.box {
+    display: flex;
+    box-sizing: border-box;
+    width: 450px;
+    height: 50px;
+}
+
+.title_box {
+    float: left;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    box-sizing: border-box;
+    width: 150px;
+    height: 50px;
+    background-color: oldlace;
+}
+
+.title_box > p {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.input_box {
+    float: left;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 300px;
+    height: 50px;
+    background-color: grey;
+}
+
+input[type="number"] {
+    width: 60px;
+}
+
+.submit_box {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 450px;
+    height: 50px;
+    background-color: skyblue;
+}
+
+.box:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+select {
+    outline: none;
+    border: none;
+    border-radius:0;
+    appearance:none;
+    width: 50px;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+input:active {
+    outline: none;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+}
+
+footer {
+    clear: both;
+    height: 40px;
+    background-color: rgb(129, 144, 255);
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="add.css" />
+    <script type="text/javascript" src=""></script>
+    <title>Calendar</title>
+</head>
+
+<body>
+    <header>
+        <p onclick="location.href='index.html'">Calendar</p>
+    </header>
+
+    <aside>
+
+    </aside>
+    
+    <main>
+        <form method="POST" action="submit">
+            <div class="box">
+                <div class="title_box">
+                    <p>Title</p>
+                </div>
+                <div class="input_box">
+                    <input type="text" id="title" name="title" required>
+                </div>
+            </div>
+            <div class="box">
+                <div class="title_box">
+                    <p>Start Date</p>
+                </div>
+                <div class="input_box">
+                    <select name="start_year" id="start_year" required>
+                        <script>
+                            let s_year = ['YYYY'];
+                            let today = new Date();
+                            let before_thirty_year = today.getFullYear() - 30;
+                            for (let a = before_thirty_year; a <= before_thirty_year + 60; a++) {
+                                s_year.push(a);
+                            }
+                            for (let b = 0; b < s_year.length; b++) {
+                                    let option = document.createElement('option');
+                                    option.innerText = s_year[b];
+                                    start_year.append(option);
+                                }
+                        </script>
+                    </select>.
+                    <select name="start_month" id="start_month" required>
+                        <script>
+                            start_year.onchange = function () {
+                                let input_start_year = start_year.value;
+                                if (input_start_year && input_start_year != 'YYYY' && start_month.options.length == 0) {
+                                    for (let c = 0; c <= 12; c++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = month[c];
+                                        start_month.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>.
+                    <select name="start_day" id="start_day">
+                        <script>
+                            start_month.onchange = function () {
+                                let input_start_month = start_month.value;
+                                if (input_start_month && input_start_month != 'MM' && start_day.options.length == 0) {
+                                    for (let d = 0; d <= finalday_of_Month(start_year.value, start_month.value); d++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = day[d];
+                                        start_day.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>&nbsp; &nbsp;
+                    <select name="start_hour" id="start_hour" required required>
+                        <script>
+                            start_day.onchange = function () {
+                                let input_start_day = start_day.value;
+                                if (input_start_day && input_start_day != 'DD' && start_hour.options.length == 0) {
+                                    for (let e = 0; e < hour.length; e++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = hour[e];
+                                        start_hour.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>:
+                    <select name="start_minute" id="start_minute" required>
+                        <script>
+                            start_hour.onchange = function () {
+                                let input_start_hour = start_hour.value;
+                                if (input_start_hour && input_start_hour != 'HH' && start_minute.options.length == 0) {
+                                    for (let f = 0; f < minute.length; f++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = minute[f];
+                                        start_minute.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>
+                </div>
+            </div>
+            <div class="box">
+                <div class="title_box">
+                    <p>End Date</p>
+                </div>
+                <div class="input_box">
+                    <select name="end_year" id="end_year" required>
+                        <script>
+                            start_minute.onchange = function () {
+                                let e_year = ['YYYY'];
+                                let after_thirty_year = today.getFullYear() + 30;
+                                for (let g = start_year.value; g <= after_thirty_year; g++) {
+                                    e_year.push(g);
+                                }
+                                let input_start_minute = start_minute.value;
+                                if (input_start_minute && input_start_minute != 'mm' && end_year.options.length == 0) {
+                                    for (let h = 0; h < e_year.length; h++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = e_year[h];
+                                        end_year.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>.
+                    <select name="end_month" id="end_month" required>
+                        <script>
+                            end_year.onchange = function () {
+                                let input_end_year = end_year.value;
+                                if (input_end_year && input_end_year != 'YYYY' && end_month.options.length == 0) {
+                                    for (let i = 0; i <= 12; i++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = month[i];
+                                        end_month.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>.
+                    <select name="end_day" id="end_day">
+                        <script>
+                            end_month.onchange = function () {
+                                let input_end_month = end_month.value;
+                                if (input_end_month && input_end_month != 'MM' && end_day.options.length == 0) {
+                                    for (let j = 0; j <= finalday_of_Month(end_year.value, end_month.value); j++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = day[j];
+                                        end_day.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>&nbsp; &nbsp;
+                    <select name="end_hour" id="end_hour" required required>
+                        <script>
+                            end_day.onchange = function () {
+                                let input_end_day = end_day.value;
+                                if (input_end_day && input_end_day != 'DD' && end_hour.options.length == 0) {
+                                    for (let k = 0; k < hour.length; k++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = hour[k];
+                                        end_hour.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>:
+                    <select name="end_minute" id="end_minute" required>
+                        <script>
+                            end_hour.onchange = function () {
+                                let input_end_hour = end_hour.value;
+                                if (input_end_hour && input_end_hour != 'HH' && end_minute.options.length == 0) {
+                                    for (let l = 0; l <minute.length; l++) {
+                                        let option = document.createElement('option');
+                                        option.innerText = minute[l];
+                                        end_minute.append(option);
+                                    }
+                                }
+                            }
+                        </script>
+                    </select>
+                </div>
+            </div>
+            <div class="box">
+                <div class="title_box">
+                    <p>Location</p>
+                </div>
+                <div class="input_box">
+                    <input type="text" id="location" name="location">
+                </div>
+            </div>
+            <div class="box">
+                <div class="title_box">
+                    <p>Explanation</p>
+                </div>
+                <div class="input_box">
+                    <input type="text" id="explanation" name="explanation">
+                </div>
+            </div>
+            <div class="box">
+                <div class="submit_box">
+                    <input type="submit" value="confirm">
+                </div>
+            </div>
+        </form>
+    </main>
+    
+    <footer>
+    
+    </footer>
+    
+    <script>
+        let start_year = document.querySelector('#start_year');
+        let start_month = document.querySelector('#start_month');
+        let start_day = document.querySelector('#start_day');
+        let start_hour = document.querySelector('#start_hour');
+        let start_minute = document.querySelector('#start_minute');
+        let end_year = document.querySelector('#end_year');
+        let end_month = document.querySelector('#end_month');
+        let end_day = document.querySelector('#end_day');
+        let end_hour = document.querySelector('#end_hour');
+        let end_minute = document.querySelector('#end_minute');
+
+        
+        let month = ['MM', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        let day = ['DD', 
+                   '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+                   '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+                   '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
+                   '31'];
+        let hour = ['HH',
+                    '00', '01', '02', '03', '04', '05', '06', '07', '08', '09',
+                    '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+                    '20', '21', '22', '23'];
+        let minute = ['mm',
+                      '00', '01', '02', '03', '04', '05', '06', '07', '08', '09',
+                      '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', 
+                      '20', '21', '22', '23', '24', '25', '26', '27', '28', '29',
+                      '30', '31', '32', '33', '34', '35', '36', '37', '38', '39',
+                      '40', '41', '42', '43', '44', '45', '46', '47', '48', '49',
+                      '50', '51', '52', '53', '54', '55', '56', '57', '58', '59']
+
+        function finalday_of_Month(YYYY, MM) {
+            return 32 - new Date(YYYY, MM - 1, 32).getDate();
+        }
+
+        function resize(YYYY, MM) {
+            let innerWidth = window.innerWidth;
+            let innerHeight = window.innerHeight;
+
+            const header = document.querySelector('header');
+            const aside = document.querySelector('aside');
+            const main = document.querySelector('main');
+            const footer = document.querySelector('footer');
+
+            let headerHeight = header.offsetHeight;
+            let asideWidth = aside.offsetWidth;
+            let footerHeight = footer.offsetHeight;
+            let middleHeight = innerHeight - headerHeight - footerHeight;
+
+            header.style.width = innerWidth + 'px';
+            aside.style.height = middleHeight + 'px';
+            main.style.width = (innerWidth - asideWidth) + 'px';
+            main.style.height = middleHeight + 'px';
+        }
+        resize();
+        window.onresize = function () { resize(); }
+    </script>
+    
+</body>
+
+</html>
