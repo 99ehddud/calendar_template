@@ -24,9 +24,7 @@ function weeks_of_month(YYYY, MM) {
 }
 
 function move_page(YYYY, MM, DD) {
-    if (MM < 10) MM = '0' + MM;
-    if (DD < 10) DD = '0' + DD;
-    location.href = 'add?date=' + YYYY + '-' + MM + '-' + DD;
+    location.href = 'add.html';
 }
 
 function make_calendar(YYYY, MM) {

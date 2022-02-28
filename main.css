@@ -8,6 +8,7 @@ body {
 
 header {
     display: flex;
+    justify-content: space-between;
     box-sizing: border-box;
     padding: 5px 30px;
     height: 60px;
@@ -15,16 +16,24 @@ header {
 }
 
 header > p {
+    display: flex;
     margin: 0;
-    text-align: center;
-    width: 130px;
+    align-items: center;
+    justify-content: center;
     height: 50px;
-    line-height: 50px;
     font-size: 30px;
     font-weight: 500;
     color: white;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     cursor: pointer;
+}
+
+#header_title {
+    width: 130px;
+}
+
+#add_schedule {
+    width: 50px;
 }
 
 main {
