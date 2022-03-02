@@ -1,5 +1,6 @@
 /* For Fonts */
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap');
 
 /* For Selectors */
 body {
@@ -8,9 +9,10 @@ body {
 
 header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 5px 30px;
+    padding: 0 30px;
     height: 60px;
     background-color: rgb(129, 144, 255);
 }
@@ -40,7 +42,7 @@ aside {
     float: left;
     box-sizing: border-box;
     width: 250px;
-    background-color: blueviolet;
+    border-right: 1px solid rgb(180, 180, 180);
 }
 
 main {
@@ -52,7 +54,7 @@ main {
 .box {
     display: flex;
     box-sizing: border-box;
-    width: 450px;
+    width: 500px;
     height: 50px;
 }
 
@@ -64,13 +66,13 @@ main {
     box-sizing: border-box;
     width: 150px;
     height: 50px;
-    background-color: oldlace;
 }
 
 .title_box > p {
     margin: 0;
     padding: 0;
     font-size: 15px;
+    font-weight: bold;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -79,26 +81,42 @@ main {
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    width: 300px;
+    padding-left: 30px;
+    width: 350px;
     height: 50px;
-    background-color: grey;
 }
 
-input[type="number"] {
-    width: 60px;
+input[type="text"] {
+    box-sizing: border-box;
+    width: 290px;
+    height: 27px;
+    font-size: 15px;
+    border-bottom: 2px solid rgb(195, 202, 255);
 }
 
 .submit_box {
     display: flex;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    width: 450px;
+    width: 500px;
     height: 50px;
-    background-color: skyblue;
+}
+
+input[type="submit"] {
+    padding: 0;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-family: 'Shippori Antique B1', sans-serif;
+    color: white;
+    background-color: rgb(148, 161, 255);
 }
 
 .box:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 input {
@@ -111,7 +129,20 @@ select {
     border: none;
     border-radius:0;
     appearance:none;
+    text-align: center;
+    height: 25px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(195, 202, 255);
+}
+
+#start_year, #end_year {
     width: 50px;
+}
+
+#start_month, #start_day, #start_hour, #start_minute,
+#end_month, #end_day, #end_hour, #end_minute {
+    width: 40px;
 }
 
 select::-ms-expand {
@@ -120,12 +151,10 @@ select::-ms-expand {
 
 input:active {
     outline: none;
-    border: none;
 }
 
 input:focus {
     outline: none;
-    border: none;
 }
 
 footer {

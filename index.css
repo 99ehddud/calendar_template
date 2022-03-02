@@ -1,0 +1,123 @@
+/* For Fonts */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500&display=swap');
+
+/* For Selectors */
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 30px;
+    height: 60px;
+    background-color: rgb(129, 144, 255);
+}
+
+header > p {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    cursor: pointer;
+}
+
+#header_title {
+    width: 130px;
+}
+
+#add_schedule {
+    width: 50px;
+}
+
+main {
+    float: left;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+#calendar_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 50px;
+    height: 40px;
+    border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+#calendar_title > button {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    color: rgb(109, 126, 255);
+    background-color: transparent;
+}
+
+#calendar_title > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#calendar {
+    border-collapse: collapse;
+}
+
+.day_of_the_week {
+    padding: 0;
+    text-align: center;
+    height: 20px;
+    font-size: 10px;
+}
+
+#calendar > tbody > tr:not(:first-child) > td {
+    box-sizing: border-box;
+    padding: 1vmin 1vmin 0 0;
+    text-align: right;
+    vertical-align: top;
+    font-size: 2vmin;
+}
+
+.day_of_the_week:first-child,
+.sunday_4week, .sunday_5week, .sunday_6week {
+    color: rgb(255, 90, 90)
+}
+
+.day_of_the_week:not(:first-child, :last-child),
+.weekday_4week, .weekday_5week, .weekday_6week {
+    color: rgb(90, 90, 90);
+}
+
+.day_of_the_week:last-child,
+.saturday_4week, .saturday_5week, .saturday_6week {
+    color: rgb(90, 90, 255);
+}
+
+.sunday_4week:hover, .sunday_5week:hover, .sunday_6week:hover,
+.weekday_4week:hover, .weekday_5week:hover, .weekday_6week:hover,
+.saturday_4week:hover, .saturday_5week:hover, .saturday_6week:hover {
+    background-color: rgb(232, 232, 255);
+}
+
+.sunday_4week:active, .sunday_5week:active, .sunday_6week:active,
+.weekday_4week:active, .weekday_5week:active, .weekday_6week:active,
+.saturday_4week:active, .saturday_5week:active, .saturday_6week:active {
+    background-color: rgb(211, 211, 255);
+}
+
+footer {
+    clear: both;
+    height: 40px;
+    background-color: rgb(129, 144, 255);
+}

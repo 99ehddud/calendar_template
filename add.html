@@ -5,7 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="add.css" />
-    <script type="text/javascript" src=""></script>
     <title>Calendar</title>
 </head>
 
@@ -26,7 +25,7 @@
                     <p>Title</p>
                 </div>
                 <div class="input_box">
-                    <input type="text" id="title" name="title" required>
+                    <input type="text" id="title" name="title" maxlength="20" required placeholder="In 20 Letters">
                 </div>
             </div>
             <div class="box">
@@ -34,7 +33,7 @@
                     <p>Start Date</p>
                 </div>
                 <div class="input_box">
-                    <select name="start_year" id="start_year" required>
+                    <select name="start_year" id="start_year" onclick="input_options_length_zero('start_year')" required>
                         <script>
                             isFirst = true;
                             let today = new Date();
@@ -50,8 +49,8 @@
                                     start_year.append(option);
                                 }
                         </script>
-                    </select>.
-                    <select name="start_month" id="start_month" required>
+                    </select>&nbsp;/&nbsp;
+                    <select name="start_month" id="start_month" onclick="input_options_length_zero('start_month')" required>
                         <script>
                             start_year.onchange = function () {
                                 input_start_year = start_year.value;
@@ -68,8 +67,8 @@
                                 }
                             }
                         </script>
-                    </select>.
-                    <select name="start_day" id="start_day">
+                    </select>&nbsp;/&nbsp;
+                    <select name="start_day" id="start_day" onclick="input_options_length_zero('start_day')" required>
                         <script>
                             start_month.onchange = function () {
                                 isFirst = true;
@@ -87,8 +86,8 @@
                                 }
                             }
                         </script>
-                    </select>&nbsp; &nbsp;
-                    <select name="start_hour" id="start_hour" required required>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select name="start_hour" id="start_hour" onclick="input_options_length_zero('start_hour')" required>
                         <script>
                             start_day.onchange = function () {
                                 input_start_day = start_day.value;
@@ -106,8 +105,8 @@
                                 }
                             }
                         </script>
-                    </select>:
-                    <select name="start_minute" id="start_minute" required>
+                    </select>&nbsp;:&nbsp;
+                    <select name="start_minute" id="start_minute" onclick="input_options_length_zero('start_minute')" required>
                         <script>
                             start_hour.onchange = function () {
                                 input_start_hour = start_hour.value;
@@ -133,7 +132,7 @@
                     <p>End Date</p>
                 </div>
                 <div class="input_box">
-                    <select name="end_year" id="end_year" required>
+                    <select name="end_year" id="end_year" onclick="input_options_length_zero('end_year')" required>
                         <script>
                             start_minute.onchange = function () {
                                 isFirst = true;
@@ -154,8 +153,8 @@
                                 }
                             }
                         </script>
-                    </select>.
-                    <select name="end_month" id="end_month" required>
+                    </select>&nbsp;/&nbsp;
+                    <select name="end_month" id="end_month" onclick="input_options_length_zero('end_month')" required>
                         <script>
                             end_year.onchange = function () {
                                 input_start_year = start_year.value;
@@ -188,8 +187,8 @@
                                 }
                             }
                         </script>
-                    </select>.
-                    <select name="end_day" id="end_day">
+                    </select>&nbsp;/&nbsp;
+                    <select name="end_day" id="end_day" onclick="input_options_length_zero('end_day')" required>
                         <script>
                             end_month.onchange = function () {
                                 input_start_year = start_year.value;
@@ -224,8 +223,8 @@
                                 }
                             }
                         </script>
-                    </select>&nbsp; &nbsp;
-                    <select name="end_hour" id="end_hour" required required>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select name="end_hour" id="end_hour" onclick="input_options_length_zero('end_hour')" required>
                         <script>
                             end_day.onchange = function () {
                                 input_start_year = start_year.value;
@@ -264,8 +263,8 @@
                                 }
                             }
                         </script>
-                    </select>:
-                    <select name="end_minute" id="end_minute" required>
+                    </select>&nbsp;:&nbsp;
+                    <select name="end_minute" id="end_minute" onclick="input_options_length_zero('end_minute')" required>
                         <script>
                             end_hour.onchange = function () {
                                 input_start_year = start_year.value;
@@ -314,7 +313,7 @@
                     <p>Location</p>
                 </div>
                 <div class="input_box">
-                    <input type="text" id="location" name="location">
+                    <input type="text" id="location" name="location" maxlength="20" placeholder="In 20 Letters">
                 </div>
             </div>
             <div class="box">
@@ -322,7 +321,7 @@
                     <p>Explanation</p>
                 </div>
                 <div class="input_box">
-                    <input type="text" id="explanation" name="explanation">
+                    <input type="text" id="explanation" name="explanation" maxlength="40" placeholder="In 40 Letters">
                 </div>
             </div>
             <div class="box">
@@ -372,11 +371,44 @@
         let end_hour = document.querySelector('#end_hour');
         let end_minute = document.querySelector('#end_minute');
 
+        function input_options_length_zero(selector) {
+            if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute', 'end_year', 'end_month', 'end_day', 'end_hour', 'end_minute'].includes(selector)) {
+                document.getElementById('confirm').disabled = true;
+                if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute', 'end_year', 'end_month', 'end_day', 'end_hour'].includes(selector)) {
+                    end_minute.options.length = 0;
+                    if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute', 'end_year', 'end_month', 'end_day'].includes(selector)) {
+                        end_hour.options.length = 0;
+                        if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute', 'end_year', 'end_month'].includes(selector)) {
+                            end_day.options.length = 0;
+                            if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute', 'end_year'].includes(selector)) {
+                                end_month.options.length = 0;
+                                if (['start_year', 'start_month', 'start_day', 'start_hour', 'start_minute'].includes(selector)) {
+                                    end_year.options.length = 0;
+                                    if (['start_year', 'start_month', 'start_day', 'start_hour'].includes(selector)) {
+                                        start_minute.options.length = 0;
+                                        if (['start_year', 'start_month', 'start_day'].includes(selector)) {
+                                            start_hour.options.length = 0;
+                                            if (['start_year', 'start_month'].includes(selector)) {
+                                                start_day.options.length = 0;
+                                                if (['start_year'].includes(selector)) {
+                                                    start_month.options.length = 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         function finalday_of_Month(YYYY, MM) {
             return 32 - new Date(YYYY, MM - 1, 32).getDate();
         }
 
-        function resize(YYYY, MM) {
+        function resize() {
             let innerWidth = window.innerWidth;
             let innerHeight = window.innerHeight;
 
@@ -394,6 +426,7 @@
             aside.style.height = middleHeight + 'px';
             main.style.width = (innerWidth - asideWidth) + 'px';
             main.style.height = middleHeight + 'px';
+            main.style.padding = (middleHeight >= 590) ? (middleHeight - 550) / 2 + 'px 50px' : '20px 50px';
         }
         resize();
         window.onresize = function () { resize(); }
