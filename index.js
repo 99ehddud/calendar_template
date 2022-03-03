@@ -114,9 +114,15 @@ function next_month() {
         today_year += 1;
         today_month = 1;
     }
+    
 }
 
 function prev_month() {
+    const calendar = document.querySelector('#calendar');
+    if (calendar) {
+        calendar.remove();
+    }
+
     if (today_month > 1) {
         today_month -= 1;
     } else {

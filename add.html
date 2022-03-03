@@ -33,7 +33,7 @@
                     <p>Start Date</p>
                 </div>
                 <div class="input_box">
-                    <select name="start_year" id="start_year" onclick="input_options_length_zero('start_year')" required>
+                    <select name="start_year" id="start_year" required>
                         <script>
                             isFirst = true;
                             let today = new Date();
@@ -50,7 +50,7 @@
                                 }
                         </script>
                     </select>&nbsp;/&nbsp;
-                    <select name="start_month" id="start_month" onclick="input_options_length_zero('start_month')" required>
+                    <select name="start_month" id="start_month" required>
                         <script>
                             start_year.onchange = function () {
                                 input_start_year = start_year.value;
@@ -68,7 +68,7 @@
                             }
                         </script>
                     </select>&nbsp;/&nbsp;
-                    <select name="start_day" id="start_day" onclick="input_options_length_zero('start_day')" required>
+                    <select name="start_day" id="start_day" required>
                         <script>
                             start_month.onchange = function () {
                                 isFirst = true;
@@ -87,7 +87,7 @@
                             }
                         </script>
                     </select>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select name="start_hour" id="start_hour" onclick="input_options_length_zero('start_hour')" required>
+                    <select name="start_hour" id="start_hour" required>
                         <script>
                             start_day.onchange = function () {
                                 input_start_day = start_day.value;
@@ -106,7 +106,7 @@
                             }
                         </script>
                     </select>&nbsp;:&nbsp;
-                    <select name="start_minute" id="start_minute" onclick="input_options_length_zero('start_minute')" required>
+                    <select name="start_minute" id="start_minute" required>
                         <script>
                             start_hour.onchange = function () {
                                 input_start_hour = start_hour.value;
@@ -132,7 +132,7 @@
                     <p>End Date</p>
                 </div>
                 <div class="input_box">
-                    <select name="end_year" id="end_year" onclick="input_options_length_zero('end_year')" required>
+                    <select name="end_year" id="end_year" required>
                         <script>
                             start_minute.onchange = function () {
                                 isFirst = true;
@@ -154,7 +154,7 @@
                             }
                         </script>
                     </select>&nbsp;/&nbsp;
-                    <select name="end_month" id="end_month" onclick="input_options_length_zero('end_month')" required>
+                    <select name="end_month" id="end_month" required>
                         <script>
                             end_year.onchange = function () {
                                 input_start_year = start_year.value;
@@ -188,7 +188,7 @@
                             }
                         </script>
                     </select>&nbsp;/&nbsp;
-                    <select name="end_day" id="end_day" onclick="input_options_length_zero('end_day')" required>
+                    <select name="end_day" id="end_day" required>
                         <script>
                             end_month.onchange = function () {
                                 input_start_year = start_year.value;
@@ -224,7 +224,7 @@
                             }
                         </script>
                     </select>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select name="end_hour" id="end_hour" onclick="input_options_length_zero('end_hour')" required>
+                    <select name="end_hour" id="end_hour" required>
                         <script>
                             end_day.onchange = function () {
                                 input_start_year = start_year.value;
@@ -264,7 +264,7 @@
                             }
                         </script>
                     </select>&nbsp;:&nbsp;
-                    <select name="end_minute" id="end_minute" onclick="input_options_length_zero('end_minute')" required>
+                    <select name="end_minute" id="end_minute" required>
                         <script>
                             end_hour.onchange = function () {
                                 input_start_year = start_year.value;
