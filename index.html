@@ -20,7 +20,9 @@
                 <p id="year_month"></p>
                 <button type="button" id="next_month" onclick="next_month()">></button>
             </div>
-            <script>make_calendar(today_year, today_month);</script>
+            <div id="calendar_location">
+                <script>make_calendar(today_year, today_month);</script>
+            </div>
         </main>
 
         <footer>
@@ -28,8 +30,8 @@
         </footer>
 
         <script>
-            resize(today_year, today_month);
-            window.onresize = function () { resize(today_year, today_month); }
+            // resize(today_year, today_month);
+            // window.onresize = function () { resize(today_year, today_month); }
         </script>
     </body>
 </html>
