@@ -25,26 +25,77 @@ function weeks_of_month(YYYY, MM) {
 
 function move_page(YYYY, MM, DD) {
     location.href = 'add.html';
+    // location.href = 'add.html?start_year=' + YYYY + '&start_month=' + MM + '&start_day=' + DD;
 }
 
 function make_calendar(YYYY, MM) {
-    let year_month = YYYY + '. ' + MM;
+    let year_month = YYYY + '.' + MM;
     document.getElementById('year_month').textContent = year_month;
-    
+
+    let week = weeks_of_month(YYYY, MM);
+    let finalday = finalday_of_Month(YYYY, MM);
+
     let table = document.createElement('table');
-    let tr = document.createElement('tr');
+    table.id = 'calendar';
+    let tr, td;
 
     const day_of_the_week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    let td = document.createElement('td');
-    td.innerHTML = 'Hello';
-    td.className = day_of_the_week;
-    
-    
-    tr.appendChild(td);
-
-    
+    tr = document.createElement('tr');
+    for (let i = 0; i < day_of_the_week.length; i++) {
+        td = document.createElement('td');
+        td.innerHTML = day_of_the_week[i];
+        td.className = 'day_of_the_week';
+        tr.appendChild(td);
+    }
     table.appendChild(tr);
+
+    if (day_of_week(YYYY, MM, 1) != 0) {
+        tr = document.createElement('tr');
+        for (let i = 0; i < day_of_week(YYYY, MM, 1); i++) {
+            td = document.createElement('td');
+            tr.appendChild(td);
+        }
+    }
+
+    for (let DD = 1; DD <= finalday; DD++) {
+        if (day_of_week(YYYY, MM, DD) == 0) {
+            tr = document.createElement('tr');
+        }
+
+        td = document.createElement('td');
+        td.innerHTML = DD;
+
+        if (day_of_week(YYYY, MM, DD) == 0) {
+            td.className = 'sunday_' + week + 'week';
+        } else if (day_of_week(YYYY, MM, DD) == 6) {
+            td.className = 'saturday_' + week + 'week';
+        } else {
+            td.className = 'weekday_' + week + 'week';
+        }
+        td.style.cursor = 'pointer';
+        td.onclick = function () { move_page(YYYY, MM, DD); }
+        
+        if (YYYY == today.getFullYear() && MM == today.getMonth()+1 && DD == today.getDate()) {
+            td.id = 'today';
+        }
+
+        tr.appendChild(td);
+
+        if (day_of_week(YYYY, MM, DD) == 6) {
+            table.appendChild(tr);
+        }
+    }
+
+    if (day_of_week(YYYY, MM, finalday) != 6) {
+        for (let i = day_of_week(YYYY, MM, finalday); i < 6; i++) {
+            td = document.createElement('td');
+            tr.appendChild(td);
+        }
+    }
+    table.appendChild(tr);
+    
     calendar_location.appendChild(table);
+    resize(today_year, today_month);
 }
 
 // function make_calendar(YYYY, MM) {
@@ -139,6 +190,7 @@ function next_month() {
         today_year += 1;
         today_month = 1;
     }
+    calendar_location.appendChild(make_calendar(today_year, today_month));
 }
 
 function prev_month() {
@@ -153,46 +205,48 @@ function prev_month() {
         today_year -= 1;
         today_month = 12;
     }
+
+    calendar_location.appendChild(make_calendar(today_year, today_month));
 }
 
 // For Resize
-// function resize(YYYY, MM) {
-//     let innerWidth = window.innerWidth;
-//     let innerHeight = window.innerHeight;
+function resize(YYYY, MM) {
+    let innerWidth = window.innerWidth;
+    let innerHeight = window.innerHeight;
 
-//     const header = document.querySelector('header');
-//     const main = document.querySelector('main');
-//     const calendartitle = document.querySelector('#calendar_title');
-//     const yearmonth = document.querySelector('#year_month');
-//     const dayoftheweek = document.querySelector('.day_of_the_week');
-//     const calendar = document.querySelector('#calendar');
-//     const footer = document.querySelector('footer');
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+    const calendartitle = document.querySelector('#calendar_title');
+    const yearmonth = document.querySelector('#year_month');
+    const dayoftheweek = document.querySelector('.day_of_the_week');
+    const calendar = document.querySelector('#calendar');
+    const footer = document.querySelector('footer');
 
-//     let headerHeight = header.offsetHeight;
-//     let calendartitleHeight = calendartitle.offsetHeight;
-//     let dayoftheweekHeight = dayoftheweek.offsetHeight;
-//     let footerHeight = footer.offsetHeight;
-//     let middle = innerHeight - headerHeight - footerHeight
-//     let calendarHeight = innerHeight - headerHeight - calendartitleHeight - dayoftheweekHeight - footerHeight;
+    let headerHeight = 60;
+    let calendartitleHeight = calendartitle.offsetHeight;
+    let dayoftheweekHeight = dayoftheweek.offsetHeight;
+    let footerHeight = 40;
+    let middle = innerHeight - headerHeight - footerHeight
+    let calendarHeight = innerHeight - headerHeight - calendartitleHeight - dayoftheweekHeight - footerHeight;
 
-//     header.style.width = innerWidth + 'px';
-//     main.style.width = innerWidth + 'px';
-//     main.style.height = middle + 'px';
-//     yearmonth.style.width = (innerWidth - 146) + 'px';
+    header.style.width = innerWidth + 'px';
+    main.style.width = innerWidth + 'px';
+    main.style.height = middle + 'px';
+    yearmonth.style.width = (innerWidth - 146) + 'px';
 
-//     for (var k = 0; k <= weeks_of_month(YYYY, MM); k++) {
-//         let tr = calendar.getElementsByTagName('tr')[k];
-//         for (var l = 0; l <= 6; l++) {
-//             let td = tr.getElementsByTagName('td')[l];
-//             td.style.width = (innerWidth - 6) / 7 + 'px';
-//             if (k != 0) {
-//                 td.style.height = calendarHeight / weeks_of_month(YYYY, MM) + 'px';
-//                 td.style.borderTop = '1px solid rgb(180, 180, 180)';
-//             }
+    for (var k = 0; k <= weeks_of_month(YYYY, MM); k++) {
+        let tr = calendar.getElementsByTagName('tr')[k];
+        for (var l = 0; l <= 6; l++) {
+            let td = tr.getElementsByTagName('td')[l];
+            td.style.width = (innerWidth - 6) / 7 + 'px';
+            if (k != 0) {
+                td.style.height = calendarHeight / weeks_of_month(YYYY, MM) + 'px';
+                td.style.borderTop = '1px solid rgb(180, 180, 180)';
+            }
 
-//             if (l < 6) {
-//                 td.style.borderRight = '1px solid rgb(180, 180, 180)';
-//             }
-//         }
-//     }
-// }
+            if (l < 6) {
+                td.style.borderRight = '1px solid rgb(180, 180, 180)';
+            }
+        }
+    }
+}
