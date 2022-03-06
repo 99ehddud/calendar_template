@@ -23,11 +23,6 @@ function weeks_of_month(YYYY, MM) {
     }
 }
 
-function move_page(YYYY, MM, DD) {
-    location.href = 'add.html';
-    // location.href = 'add.html?start_year=' + YYYY + '&start_month=' + MM + '&start_day=' + DD;
-}
-
 function make_calendar(YYYY, MM) {
     let year_month = YYYY + '.' + MM;
     document.getElementById('year_month').textContent = year_month;
@@ -73,7 +68,7 @@ function make_calendar(YYYY, MM) {
             td.className = 'weekday_' + week + 'week';
         }
         td.style.cursor = 'pointer';
-        td.onclick = function () { move_page(YYYY, MM, DD); }
+
         
         if (YYYY == today.getFullYear() && MM == today.getMonth()+1 && DD == today.getDate()) {
             td.id = 'today';
@@ -98,6 +93,7 @@ function make_calendar(YYYY, MM) {
     resize(today_year, today_month);
 }
 
+// For Making Calendar by "document.write()"
 // function make_calendar(YYYY, MM) {
 //     let year_month = YYYY + '. ' + MM;
 //     document.getElementById('year_month').textContent = year_month;
@@ -205,8 +201,24 @@ function prev_month() {
         today_year -= 1;
         today_month = 12;
     }
-
     calendar_location.appendChild(make_calendar(today_year, today_month));
+}
+
+let ishidden = true;
+function show_schedule() {
+    if (ishidden) {
+        document.getElementById('schedule').style.opacity = 1;
+        document.getElementById('schedule').style.visibility = "visible";
+        ishidden = false;
+    }
+}
+
+function hide_schedule() {
+    if (!ishidden) {
+        document.getElementById('schedule').style.opacity = 0;
+        document.getElementById('schedule').style.visibility = "hidden";
+        ishidden = true;
+    }
 }
 
 // For Resize

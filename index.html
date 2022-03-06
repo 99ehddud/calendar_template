@@ -11,7 +11,7 @@
     <body>
         <header>
             <p id="header_title" onclick="location.href='index.html'">Calendar</p>
-            <p id="add_schedule" onclick="location.href='add.html'">+</p>
+            <p id="add_schedule" onclick="show_schedule();">＋</p>
         </header>
 
         <main>
@@ -22,6 +22,52 @@
             </div>
             <div id="calendar_location">
                 <script>make_calendar(today_year, today_month);</script>
+            </div>
+            <div id="schedule">
+                <form action="submit" method="post">
+                    <div class="box">
+                        <div class="title_box">
+                            <p>Title</p>
+                        </div>
+                        <div class="input_box">
+                            <input type="text" id="title" name="title" maxlength="20" required placeholder="In 20 Letters">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="title_box">
+                            <p>Date</p>
+                        </div>
+                        <div class="input_box">
+                            <select name="year" id="year"></select>&nbsp;/&nbsp;
+                            <select name="month" id="month"></select>&nbsp;/&nbsp;
+                            <select name="day" id="day"></select>&nbsp;&nbsp;
+                            <select name="hour" id="hour"></select>&nbsp;:&nbsp;
+                            <select name="minute" id="minute"></select>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="title_box">
+                            <p>Location</p>
+                        </div>
+                        <div class="input_box">
+                            <input type="text" id="location" name="location" maxlength="20" placeholder="In 20 Letters">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="title_box">
+                            <p>Explanation</p>
+                        </div>
+                        <div class="input_box">
+                            <input type="text" id="explanation" name="explanation" maxlength="40" placeholder="In 40 Letters">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="submit_box">
+                            <p onclick="hide_schedule();">Cancel</p>
+                            <input type="submit" id="confirm" value="Confirm">
+                        </div>
+                    </div>
+                </form>
             </div>
         </main>
 
