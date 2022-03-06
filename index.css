@@ -19,12 +19,12 @@ header {
     height: 60px;
 }
 
-header > p {
+header > p,
+#header_button_div > p {
     display: flex;
     margin: 0;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
     font-weight: 500;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     cursor: pointer;
@@ -33,23 +33,43 @@ header > p {
 #header_title {
     width: 130px;
     height: 50px;
+    font-size: 30px;
     color: white;
+}
+
+#header_button_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 130px;
+    height: 30px;
+}
+
+#header_button_div > p {
+    background-color: white;
+    color: rgb(129, 144, 255);
+    border-radius: 10px;
+}
+
+#move_to_today {
+    box-sizing: border-box;
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
 }
 
 #add_schedule {
     box-sizing: border-box;
     width: 30px;
     height: 30px;
-    border-radius: 10px;
-    background-color: white;
-    color: rgb(129, 144, 255);
+    font-size: 30px;
 }
 
-#add_schedule:hover {
+#header_button_div > p:hover {
     background-color: rgb(230, 230, 255);
 }
 
-#add_schedule:active {
+#header_button_div > p:active {
     background-color: rgb(200, 200, 255);
 }
 
@@ -211,23 +231,57 @@ input[type="text"] {
 
 .submit_box {
     display: flex;
+    padding: 0 75px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
-    width: 500px;
+    width: 480px;
     height: 50px;
 }
 
-input[type="submit"] {
-    padding: 0;
-    width: 200px;
+.submit_box > p {
+    margin: 0;
+    margin-right: 30px;
+    width: 150px;
     height: 30px;
     line-height: 30px;
     border-radius: 15px;
     font-size: 15px;
     font-family: 'Shippori Antique B1', sans-serif;
     color: white;
+    text-align: center;
+    background-color: rgb(125, 125, 125);
+}
+
+.submit_box > p:hover {
+    color: rgb(225, 225, 225);
+    background-color: rgb(150, 150, 150);
+}
+
+.submit_box > p:active {
+    color: rgb(200, 200, 200);
+    background-color: rgb(175, 175, 175);
+}
+
+input[type="submit"] {
+    padding: 0;
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-family: 'Shippori Antique B1', sans-serif;
+    color: white;
     background-color: rgb(148, 161, 255);
+}
+
+input[type="submit"]:hover {
+    color: rgb(225, 225, 225);
+    background-color: rgb(158, 171, 225);
+}
+
+input[type="submit"]:active {
+    color: rgb(200, 200, 200);
+    background-color: rgb(168, 181, 225);
 }
 
 .box:not(:last-child) {

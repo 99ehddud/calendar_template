@@ -204,6 +204,18 @@ function prev_month() {
     calendar_location.appendChild(make_calendar(today_year, today_month));
 }
 
+function move_to_today() {
+    const calendar = document.querySelector('#calendar');
+    if(calendar) {
+        calendar.remove();
+    }
+
+    today_year = today.getFullYear();
+    today_month = today.getMonth() + 1;
+
+    calendar_location.appendChild(make_calendar(today_year, today_month));
+}
+
 let ishidden = true;
 function show_schedule() {
     if (ishidden) {
