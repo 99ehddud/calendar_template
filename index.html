@@ -41,11 +41,134 @@
                             <p>Date</p>
                         </div>
                         <div class="input_box">
-                            <select name="year" id="year"></select>&nbsp;/&nbsp;
-                            <select name="month" id="month"></select>&nbsp;/&nbsp;
-                            <select name="day" id="day"></select>&nbsp;&nbsp;
-                            <select name="hour" id="hour"></select>&nbsp;:&nbsp;
-                            <select name="minute" id="minute"></select>
+                            <select name="year" id="year" required>
+                                <script>
+                                    let isFirst = true;
+                                    let tmp = new Date();
+                                    for (let i = tmp.getFullYear() - 31; i <= tmp.getFullYear() + 30; i++) {
+                                        option = document.createElement('option');
+                                        if (isFirst) {
+                                            isFirst = false;
+                                            option.innerText = 'YYYY';
+                                        } else {
+                                            option.innerText = i;
+                                        }
+                                        year.append(option);
+                                    }
+                                </script>
+                            </select>&nbsp;/&nbsp;
+                            <select name="month" id="month" required disabled>
+                                <script>
+                                    for (let i = 0; i <= 12; i++) {
+                                        option = document.createElement('option');
+                                        if (i != 0) {
+                                            if (i < 10) i = '0' + i;
+                                            option.innerText = i;
+                                        } else {
+                                            option.innerText = 'MM';
+                                        }
+                                        month.append(option);
+                                    }
+
+                                    year.onchange = function () {
+                                        if (year.value != 'YYYY') {
+                                            checkYear = true;
+                                        } else {
+                                            checkYear = false;
+                                        }
+                                        if (checkYear && checkMonth && checkDay && checkHour && checkMinute) {
+                                            document.querySelector('#confirm').disabled = false;
+                                        } else {
+                                            document.querySelector('#confirm').disabled = true;
+                                        }
+
+                                        if (year.value != 'YYYY') {
+                                            month.disabled = false;
+                                        } else {
+                                            month.disabled = true;
+                                        }
+
+                                        if (month.value != 'MM') {
+                                            month.value = 'MM';
+                                        }
+                                        
+                                        if (day.value != 'DD') {
+                                            day.value = 'DD';
+                                        }
+                                        if (day.disabled == false) {
+                                            day.disabled = true;
+                                        }
+                                    }
+                                </script>
+                            </select>&nbsp;/&nbsp;
+                            <select name="day" id="day" required disabled>
+                                <script>
+                                    option = document.createElement('option');
+                                    option.innerText = 'DD';
+                                    day.append(option);
+
+                                    month.onchange = function () {
+                                        if (month.value != 'MM') {
+                                            checkMonth = true;
+                                        } else {
+                                            checkMonth = false;
+                                        }
+                                        if (checkYear && checkMonth && checkDay && checkHour && checkMinute) {
+                                            document.querySelector('#confirm').disabled = false;
+                                        } else {
+                                            document.querySelector('#confirm').disabled = true;
+                                        }
+
+                                        if (month.value != 'MM') {
+                                            day.disabled = false;
+                                            day.options.length = 0;
+                                            for (let i = 0; i <= finalday_of_Month(year.value, month.value); i++) {
+                                                option = document.createElement('option');
+                                                if (i != 0) {
+                                                    if (i < 10) i = '0' + i;
+                                                    option.innerText = i;
+                                                } else {
+                                                    option.innerText = 'DD';
+                                                }
+                                                day.append(option);
+                                            }
+                                        } else {
+                                            day.disabled = true;
+                                            option = document.createElement('option');
+                                            option.innerText = 'DD';
+                                            day.append(option);
+                                        }
+                                    }
+                                </script>
+                            </select>&nbsp;&nbsp
+                            <select name="hour" id="hour" required>
+                                <script>
+                                    for (let i = -1; i < 24; i++) {
+                                        option = document.createElement('option');
+                                        if (i != -1) {
+                                            if (i < 10) i = '0' + i;
+                                            option.innerText = i;
+                                        } else {
+                                            option.innerText = 'HH';
+                                        }
+                                        hour.append(option);
+                                    }
+                                </script>
+                            </select>&nbsp;:&nbsp;
+                            <select name="minute" id="minute" required>
+                                <script>
+                                    for (let i = -1; i < 60; i++) {
+                                            option = document.createElement('option');
+                                            if (i != -1) {
+                                                if (i < 10) i = '0' + i;
+                                                option.innerText = i;
+                                            } else {
+                                                option.innerText = 'mm';
+                                            }
+                                            minute.append(option);
+                                        }
+                                </script>
+                            </select>
                         </div>
                     </div>
                     <div class="box">
@@ -67,7 +190,63 @@
                     <div class="box">
                         <div class="submit_box">
                             <p onclick="hide_schedule();">Cancel</p>
-                            <input type="submit" id="confirm" value="Confirm">
+                            <input type="submit" id="confirm" value="Confirm" disabled>
+                            <script>
+                                let checkYear = false;
+                                let checkMonth = false;
+                                let checkDay = false;
+                                let checkHour = false;
+                                let checkMinute = false;
+
+                                day.onchange = function () {
+                                    if (day.value && day.value != 'DD') {
+                                        checkDay = true;
+                                    } else {
+                                        checkDay = false;
+                                    }
+                                    if (checkYear && checkMonth && checkDay && checkHour && checkMinute) {
+                                        document.querySelector('#confirm').disabled = false;
+                                    } else {
+                                        document.querySelector('#confirm').disabled = true;
+                                    }
+                                }
+
+                                hour.onchange = function () {
+                                    if (hour.value != 'HH') {
+                                        checkHour = true;
+                                    } else {
+                                        checkHour = false;
+                                    }
+
+                                    if (year.value != 'YYYY') checkYear = true;
+                                    if (month.value != 'MM') checkMonth = true;
+                                    if (day.value != 'DD') checkDay = true;
+
+                                    if (checkYear && checkMonth && checkDay && checkHour && checkMinute) {
+                                        document.querySelector('#confirm').disabled = false;
+                                    } else {
+                                        document.querySelector('#confirm').disabled = true;
+                                    }
+                                }
+
+                                minute.onchange = function () {
+                                    if (minute.value != 'mm') {
+                                        checkMinute = true;
+                                    } else {
+                                        checkMinute = false;
+                                    }
+
+                                    if (year.value != 'YYYY') checkYear = true;
+                                    if (month.value != 'MM') checkMonth = true;
+                                    if (day.value != 'DD') checkDay = true;
+
+                                    if (checkYear && checkMonth && checkDay && checkHour && checkMinute) {
+                                        document.querySelector('#confirm').disabled = false;
+                                    } else {
+                                        document.querySelector('#confirm').disabled = true;
+                                    }
+                                }
+                            </script>
                         </div>
                     </div>
                 </form>
@@ -79,8 +258,19 @@
         </footer>
 
         <script>
+            let option;
+            let year = document.querySelector('#year');
+            let month = document.querySelector('#month');
+            let day = document.querySelector('#day');
+            let hour = document.querySelector('#hour');
+            let minute = document.querySelector('#minute');
+
             resize(today_year, today_month);
-            window.onresize = function () { resize(today_year, today_month); }
+            resize_schedule();
+            window.onresize = function () { 
+                resize(today_year, today_month); 
+                resize_schedule();
+            }
         </script>
     </body>
 </html>

@@ -23,6 +23,46 @@ function weeks_of_month(YYYY, MM) {
     }
 }
 
+function input_date(YYYY, MM, DD) {
+    let year = document.querySelector('#year');
+    let month = document.querySelector('#month');
+    let day = document.querySelector('#day');
+
+    show_schedule();
+
+    let option;
+    for (let i = today.getFullYear - 31; i <= today.getFullYear() + 30; i++) {
+        option = document.createElement('option');
+        if (isFirst) {
+            isFirst = false;
+            option.innerText = 'YYYY';
+        } else {
+            option.innerText = i;
+        }
+        year.append(option);
+    }
+    year.value = Number(YYYY);
+
+    month.disabled = false;
+    if (MM < 10) MM = '0' + MM;
+    month.value = MM;
+
+    day.disabled = false;
+    day.options.length = 0;
+    for (let i = 0; i <= finalday_of_Month(year.value, month.value); i++) {
+        option = document.createElement('option');
+        if (i != 0) {
+            if (i < 10) i = '0' + i;
+            option.innerText = i;
+        } else {
+            option.innerText = 'DD';
+        }
+        day.append(option);
+    }
+    if (DD < 10) DD = '0' + DD;
+    day.value = DD;
+}
+
 function make_calendar(YYYY, MM) {
     let year_month = YYYY + '.' + MM;
     document.getElementById('year_month').textContent = year_month;
@@ -68,6 +108,7 @@ function make_calendar(YYYY, MM) {
             td.className = 'weekday_' + week + 'week';
         }
         td.style.cursor = 'pointer';
+        td.onclick = function () { input_date(YYYY, MM, DD); }
 
         
         if (YYYY == today.getFullYear() && MM == today.getMonth()+1 && DD == today.getDate()) {
@@ -219,16 +260,48 @@ function move_to_today() {
 let ishidden = true;
 function show_schedule() {
     if (ishidden) {
-        document.getElementById('schedule').style.opacity = 1;
-        document.getElementById('schedule').style.visibility = "visible";
+        document.querySelector('#schedule').style.opacity = 1;
+        document.querySelector('#schedule').style.visibility = "visible";
+        document.querySelector('header').style.pointerEvents = "none";
+        document.querySelector('#calendar_title').style.pointerEvents = "none";
+        document.querySelector('#calendar_location').style.pointerEvents = "none";
+        initialization_schedule();
         ishidden = false;
     }
 }
 
+function initialization_schedule() {
+    let title = document.querySelector('#title');
+    let year = document.querySelector('#year');
+    let month = document.querySelector('#month');
+    let day = document.querySelector('#day');
+    let hour = document.querySelector('#hour');
+    let minute = document.querySelector('#minute');
+    let location = document.querySelector('#location');
+    let explanation = document.querySelector('#explanation');
+
+    title.value = null;
+    year.value = 'YYYY';
+    month.value = 'MM';
+    month.disabled = true;
+    day.value = 'DD';
+    day.disabled = true;
+    hour.value = 'HH';
+    minute.value = 'mm';
+    location.value = null;
+    explanation.value = null;
+
+    document.querySelector('#confirm').disabled = true;
+}
+
 function hide_schedule() {
     if (!ishidden) {
-        document.getElementById('schedule').style.opacity = 0;
-        document.getElementById('schedule').style.visibility = "hidden";
+        document.querySelector('#schedule').style.opacity = 0;
+        document.querySelector('#schedule').style.visibility = "hidden";
+        document.querySelector('header').style.pointerEvents = "auto";
+        document.querySelector('#calendar_title').style.pointerEvents = "auto";
+        document.querySelector('#calendar_location').style.pointerEvents = "auto";
+        
         ishidden = true;
     }
 }
@@ -244,7 +317,6 @@ function resize(YYYY, MM) {
     const yearmonth = document.querySelector('#year_month');
     const dayoftheweek = document.querySelector('.day_of_the_week');
     const calendar = document.querySelector('#calendar');
-    const footer = document.querySelector('footer');
 
     let headerHeight = 60;
     let calendartitleHeight = calendartitle.offsetHeight;
@@ -273,4 +345,13 @@ function resize(YYYY, MM) {
             }
         }
     }
+}
+
+function resize_schedule() {
+    const schedule = document.querySelector('#schedule');
+
+    schedule.style.width = (innerWidth <= 500) ? innerWidth + 'px' : '500px';
+    schedule.style.height = (innerHeight <= 400) ? innerHeight + 'px' : '400px';
+    schedule.style.top = (innerHeight / 2 - schedule.offsetHeight / 2) + 'px';
+    schedule.style.left = (innerWidth / 2 - schedule.offsetWidth / 2) + 'px';
 }

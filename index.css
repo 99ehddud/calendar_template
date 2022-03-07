@@ -8,6 +8,10 @@
 body {
     margin: 0;
     background-color: rgb(129, 144, 255);
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 header {
@@ -171,13 +175,11 @@ main {
 
 #schedule {
     position: absolute;
-    left: 50%;
+    /* left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     box-sizing: border-box;
     padding: 12px 11px;
-    width: 500px;
-    height: 400px;
     border: 3px solid rgb(129, 144, 255);
     border-radius: 25px;
     background-color: white;
@@ -297,12 +299,15 @@ select {
     outline: none;
     border: none;
     border-radius:0;
-    appearance:none;
     text-align: center;
     height: 25px;
     font-size: 15px;
     border-radius: 10px;
     border: 1px solid rgb(195, 202, 255);
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 #year {
