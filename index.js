@@ -130,8 +130,9 @@ function make_calendar(YYYY, MM) {
     }
     table.appendChild(tr);
     
-    calendar_location.appendChild(table);
+    calendar_location.append(table);
     resize(today_year, today_month);
+    return "";
 }
 
 // For Making Calendar by "document.write()"
@@ -227,7 +228,7 @@ function next_month() {
         today_year += 1;
         today_month = 1;
     }
-    calendar_location.appendChild(make_calendar(today_year, today_month));
+    calendar_location.append(make_calendar(today_year, today_month));
 }
 
 function prev_month() {
@@ -242,7 +243,7 @@ function prev_month() {
         today_year -= 1;
         today_month = 12;
     }
-    calendar_location.appendChild(make_calendar(today_year, today_month));
+    calendar_location.append(make_calendar(today_year, today_month));
 }
 
 function move_to_today() {
@@ -254,7 +255,7 @@ function move_to_today() {
     today_year = today.getFullYear();
     today_month = today.getMonth() + 1;
 
-    calendar_location.appendChild(make_calendar(today_year, today_month));
+    calendar_location.append(make_calendar(today_year, today_month));
 }
 
 let ishidden = true;
