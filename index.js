@@ -64,7 +64,9 @@ function input_date(YYYY, MM, DD) {
 }
 
 function make_calendar(YYYY, MM) {
-    let year_month = YYYY + '.' + MM;
+    if (MM < 10) MM = '0' + MM;
+    let year_month = YYYY + ' / ' + MM;
+    if (typeof(MM) != Number) MM = Number(MM);
     document.getElementById('year_month').textContent = year_month;
 
     let week = weeks_of_month(YYYY, MM);
@@ -258,16 +260,85 @@ function move_to_today() {
     calendar_location.append(make_calendar(today_year, today_month));
 }
 
-let ishidden = true;
-function show_schedule() {
-    if (ishidden) {
-        document.querySelector('#schedule').style.opacity = 1;
-        document.querySelector('#schedule').style.visibility = "visible";
+let isChangeHidden = true;
+function show_change() {
+    if (isChangeHidden) {
+        document.querySelector('#change').style.opacity = 1;
+        document.querySelector('#change').style.visibility = "visible";
+
+        let change_year = document.querySelector('#change_year');
+        change_year.value = today.getFullYear();
+
         document.querySelector('header').style.pointerEvents = "none";
         document.querySelector('#calendar_title').style.pointerEvents = "none";
         document.querySelector('#calendar_location').style.pointerEvents = "none";
-        initialization_schedule();
-        ishidden = false;
+        isChangeHidden = false;
+    }
+}
+
+function initialization_change() {
+    let change_year = document.querySelector('#change_year');
+    let change_month = document.querySelector('#change_month');
+
+    change_year.value = 'YYYY';
+    change_month.value = 'MM';
+}
+
+function hide_change() {
+    if (!isChangeHidden) {
+        document.querySelector('#change').style.opacity = 0;
+        document.querySelector('#change').style.visibility = "hidden";
+        document.querySelector('header').style.pointerEvents = "auto";
+        document.querySelector('#calendar_title').style.pointerEvents = "auto";
+        document.querySelector('#calendar_location').style.pointerEvents = "auto";
+        initialization_change();
+        isChangeHidden = true;
+    }
+}
+
+function move_to_input_day() {
+    let change_year = document.querySelector('#change_year');
+    let change_month = document.querySelector('#change_month');
+
+    let input_change_year = Number(change_year.value);
+    let input_change_month = Number(change_month.value);
+
+    if (!isNaN(input_change_year) && !isNaN(input_change_month)) {
+        const calendar = document.querySelector('#calendar');
+        if (calendar) {
+            calendar.remove();
+        }
+        hide_change();
+        calendar_location.append(make_calendar(input_change_year, input_change_month));
+    } else {
+        let errorMessage = 'Error: Please Select ';
+        if (isNaN(input_change_year) && isNaN(input_change_month)){
+            errorMessage = errorMessage + 'Year & Month';
+        }else if (isNaN(input_change_year)) {
+            errorMessage = errorMessage + 'Year';
+        } else if (isNaN(input_change_month)) {
+            errorMessage = errorMessage + 'Month';
+        }
+        alert(errorMessage);
+        initialization_change();
+    }
+}
+
+let isScheduleHidden = true;
+function show_schedule() {
+    if (isScheduleHidden) {
+        document.querySelector('#schedule').style.opacity = 1;
+        document.querySelector('#schedule').style.visibility = "visible";
+
+        let year = document.querySelector('#year');
+        year.value = today.getFullYear();
+        let month = document.querySelector('#month');
+        month.disabled = false;
+
+        document.querySelector('header').style.pointerEvents = "none";
+        document.querySelector('#calendar_title').style.pointerEvents = "none";
+        document.querySelector('#calendar_location').style.pointerEvents = "none";
+        isScheduleHidden = false;
     }
 }
 
@@ -296,14 +367,14 @@ function initialization_schedule() {
 }
 
 function hide_schedule() {
-    if (!ishidden) {
+    if (!isScheduleHidden) {
         document.querySelector('#schedule').style.opacity = 0;
         document.querySelector('#schedule').style.visibility = "hidden";
         document.querySelector('header').style.pointerEvents = "auto";
         document.querySelector('#calendar_title').style.pointerEvents = "auto";
         document.querySelector('#calendar_location').style.pointerEvents = "auto";
-        
-        ishidden = true;
+        initialization_schedule();
+        isScheduleHidden = true;
     }
 }
 
@@ -349,10 +420,19 @@ function resize(YYYY, MM) {
 }
 
 function resize_schedule() {
+    let innerWidth = window.innerWidth;
+    let innerHeight = window.innerHeight;
     const schedule = document.querySelector('#schedule');
 
     schedule.style.width = (innerWidth <= 500) ? innerWidth + 'px' : '500px';
     schedule.style.height = (innerHeight <= 400) ? innerHeight + 'px' : '400px';
     schedule.style.top = (innerHeight / 2 - schedule.offsetHeight / 2) + 'px';
     schedule.style.left = (innerWidth / 2 - schedule.offsetWidth / 2) + 'px';
+}
+
+function resize_change() {
+    let innerWidth = window.innerWidth;
+    const change = document.querySelector('#change');
+
+    change.style.left = (innerWidth/2 - change.offsetWidth/2) + 'px';
 }

@@ -111,6 +111,84 @@ main {
     font-family: 'Kosugi Maru', sans-serif;
 }
 
+#change {
+    position: absolute;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 14px;
+    width: 160px;
+    height: 100px;
+    border: 1px solid rgb(195, 202, 255);
+    border-radius: 20px;
+    background-color: rgb(218, 227, 255);
+    opacity: 0;
+    visibility: hidden;
+}
+
+#select_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 130px;
+}
+
+#change_year,
+#change_month {
+    box-sizing: border-box;
+    padding: 0;
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Shippori Antique B1', sans-serif;
+}
+
+#change_year {
+    width: 60px;
+}
+
+#change_month {
+    width: 50px;
+}
+
+#p_box {
+    display: flex;
+    justify-content: space-between;
+    width: 130px;
+    height: 25px;
+}
+
+#cancel_change, #run_change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 25px;
+    border-radius: 10px;
+    font-family: 'Shippori Antique B1', sans-serif;
+}
+
+#cancel_change {
+    box-sizing: border-box;
+    width: 40px;
+    font-size: 20px;
+    color: white;
+    border: 1px solid rgb(233, 236, 255);
+    background-color: rgb(125, 125, 125);;
+}
+
+#run_change {
+    box-sizing: border-box;
+    width: 80px;
+    font-size: 15px;
+    color: rgb(129, 144, 255);
+    border: 1px solid rgb(195, 202, 255);
+    background-color: white;
+}
+
 #calendar {
     border-collapse: collapse;
 }
@@ -219,7 +297,7 @@ main {
     height: 50px;
 }
 
-input[type="text"] {
+#title, #location, #explanation {
     box-sizing: border-box;
     width: 290px;
     height: 27px;
@@ -261,7 +339,7 @@ input[type="text"] {
     background-color: rgb(175, 175, 175);
 }
 
-input[type="submit"] {
+#confirm {
     padding: 0;
     width: 150px;
     height: 30px;
@@ -272,12 +350,12 @@ input[type="submit"] {
     background-color: rgb(148, 161, 255);
 }
 
-input[type="submit"]:hover {
+#confirm:hover {
     color: rgb(225, 225, 225);
     background-color: rgb(158, 171, 225);
 }
 
-input[type="submit"]:active {
+#confirm:active {
     color: rgb(200, 200, 200);
     background-color: rgb(168, 181, 225);
 }

@@ -19,9 +19,48 @@
 
         <main>
             <div id="calendar_title">
-                <button type="button" id="prev_month" onclick="prev_month()"><</button>
-                <p id="year_month"></p>
-                <button type="button" id="next_month" onclick="next_month()">></button>
+                <button type="button" id="prev_month" onclick="prev_month();"><</button>
+                <p id="year_month" onclick="show_change();"></p>
+                <button type="button" id="next_month" onclick="next_month();">></button>
+            </div>
+            <div id="change">
+                <div id="select_box">
+                    <select name="change_year" id="change_year">
+                        <script>
+                            isFirst = true;
+                            tmp = new Date();
+                            for (let i = tmp.getFullYear() - 31; i <= tmp.getFullYear() + 30; i++) {
+                                option = document.createElement('option');
+                                if (isFirst) {
+                                    isFirst = false;
+                                    option.innerText = 'YYYY';
+                                } else {
+                                    option.innerText = i;
+                                }
+                                change_year.append(option);
+                            }
+                        </script>
+                    </select>
+                    <span>/</span>
+                    <select name="change_month" id="change_month">
+                        <script>
+                            for (let i = 0; i <= 12; i++) {
+                                option = document.createElement('option');
+                                if (i != 0) {
+                                    if (i < 10) i = '0' + i;
+                                    option.innerText = i;
+                                } else {
+                                    option.innerText = 'MM';
+                                }
+                                change_month.append(option);
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div id="p_box">
+                    <p id="cancel_change" onclick="hide_change();">×</p>
+                    <p id="run_change" onclick="move_to_input_day();">Change</p>
+                </div>
             </div>
             <div id="calendar_location">
                 <script>make_calendar(today_year, today_month);</script>
@@ -267,9 +306,11 @@
 
             resize(today_year, today_month);
             resize_schedule();
+            resize_change();
             window.onresize = function () { 
                 resize(today_year, today_month); 
                 resize_schedule();
+                resize_change();
             }
         </script>
     </body>
